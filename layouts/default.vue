@@ -53,19 +53,24 @@ export default {
           to: "/",
         },
         {
-          icon: "mdi-school",
-          title: "Education",
-          to: "/education",
-        },
-        {
           icon: "mdi-briefcase",
           title: "Experience",
-          to: "/experience",
+          to: { path: "/", hash: "#experience" },
+        },
+        {
+          icon: "mdi-school",
+          title: "Education",
+          to: { path: "/", hash: "#education" },
         },
         {
           icon: "mdi-creation",
           title: "Skills",
-          to: "/skills",
+          to: { path: "/", hash: "#skills" },
+        },
+        {
+          icon: "mdi-clipboard-check-multiple-outline",
+          title: "Projects",
+          to: { path: "/", hash: "#projects" },
         },
       ],
       miniVariant: false,
