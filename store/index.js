@@ -1,36 +1,32 @@
 import Vuex from 'vuex'
 import firebase, { auth, GoogleProvider } from '@/services/fireinit.js'
 
-const createStore = () => {
-  return new Vuex.Store({
-    state: {
-      user: null
-    },
-    getters: {
-      activeUser: (state, getters) => {
-        return state.user
-      }
-    },
-    mutations: {
-      setUser(state, payload) {
-        state.user = payload
-      }
-    },
-    actions: {
-      signInWithGoogle({ commit }) {
-        return new Promise((resolve, reject) => {
-          auth.signInWithRedirect(GoogleProvider)
-          resolve()
-        })
-      },
+export const state = () => ({
+  user: null
+})
 
-      signOut({ commit }) {
-        auth.signOut().then(() => {
-          commit('setUser', null)
-        }).catch(err => console.log(error))
-      }
-    }
-  })
+export const mutations = {
+  setUser(state, payload) {
+    state.user = payload
+  }
 }
 
-export default createStore
+export const getters = {
+  activeUser: (state, getters) => {
+    return state.user
+  }
+}
+
+export const actions = {
+  signInWithGoogle({ commit }) {
+    return new Promise((resolve, reject) => {
+      auth.signInWithRedirect(GoogleProvider)
+      resolve()
+    })
+  },
+  signOut({ commit }) {
+    auth.signOut().then(() => {
+      commit('setUser', null)
+    }).catch(err => console.log(error))
+  }
+}
