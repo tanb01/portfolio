@@ -5,21 +5,31 @@
         class="experience-link"
         :to="{
           name: 'experience-show',
-          params: { id: experience.experienceId },
+          params: { id: experience.id },
         }"
       >
         <div>
-          <h3 class="title">{{ experience.name }}</h3>
-          <span class="eyebrow"
-            >Date: {{ this.experience.experienceDate }}</span
-          >
+          <h3 class="title">{{ this.experience.position }}</h3>
+          <h4 class="subtitle">
+            {{ experience.company }} · {{ this.experience.contractType }}
+          </h4>
+          <h5 class="subtitle-text">
+            {{ this.experience.startDate }} - {{ this.experience.endDate }} ·
+            Duration
+          </h5>
+          <h5 class="subtitle-text">
+            {{ this.experience.city }}, {{ this.experience.country }}
+          </h5>
+          <h5 class="description">
+            {{ this.experience.description }}
+          </h5>
         </div>
       </router-link>
       <div class="button-group">
         <router-link
           :to="{
             name: 'experience-edit',
-            params: { id: experience.experienceId },
+            params: { id: experience.id },
           }"
         >
           <v-btn text color="primary"
@@ -31,52 +41,47 @@
           ><v-icon left>mdi-delete</v-icon>
           <span>Delete</span>
         </v-btn>
-        <!-- <ConfirmDialog ref="confirm" /> -->
       </div>
     </div>
   </v-container>
 </template>
 
 <script>
+import { deleteField } from "firebase/firestore";
+import { StoreDB } from "../services/fireinit";
 export default {
   props: {
     experience: Object,
   },
-  // components: {
-  //   ConfirmDialog: ConfirmDialog
-  // },
-  created() {
-    // dayjs.extend(calendar)
-    // dayjs.extend(updateLocale)
-    // dayjs.updateLocale('en', {
-    //   calendar: {
-    //     sameElse: 'DD/MM/YYYY hh:mm A'
-    //   }
-    // })
-  },
-  filters: {
-    // formatDate: (date) => {
-    //   if (!date) {
-    //     return null
-    //   }
-    //   return dayjs(date).calendar()
-    // }
-  },
   methods: {
-    // async deleteexperience() {
-    //   if (
-    //     await this.$refs.confirm.open(
-    //       'Confirm',
-    //       'Are you sure you want to delete this experience?'
-    //     )
-    //   ) {
-    //     this.$store.dispatch('experience/deleteexperience', this.experience)
-    //   }
-    // }
+    async deleteExperience() {
+      const ref = StoreDB.collection("experiences").doc(this.experience.id);
+      console.log("ref", ref);
+      try {
+        const deleteFieldsRes = await ref.update({
+          city: deleteField(),
+          company: deleteField(),
+          contractType: deleteField(),
+          country: deleteField(),
+          description: deleteField(),
+          endDate: deleteField(),
+          startDate: deleteField(),
+          image: deleteField(),
+          position: deleteField(),
+        });
+        const deleteDocumentRes = await StoreDB.collection("experiences")
+          .doc(this.experience.id)
+          .delete();
+        console.log("res", deleteDocumentRes);
+        alert("Success!");
+      } catch (error) {
+        alert("Error!");
+        console.error(error);
+      }
+    },
   },
 };
 </script>
-
 <style scoped>
 .experience-card {
   margin: 0 auto;
@@ -84,6 +89,8 @@ export default {
   padding: 20px;
   transition: all 0.2s linear;
   cursor: pointer;
+  background-color: rgba(147, 147, 147, 0.19);
+  border-radius: 4px;
 }
 .experience-card:hover {
   transform: scale(1.01);
@@ -92,10 +99,20 @@ export default {
 .experience-card > .title {
   margin: 0;
 }
+.subtitle {
+  font-weight: 500;
+}
+.subtitle-text {
+  font-weight: 300;
+}
+.description {
+  font-weight: 400;
+}
 .experience-link {
-  color: black;
+  color: white;
   text-decoration: none;
   font-weight: 100;
+  text-align: justify;
 }
 .button-group {
   text-align: right;

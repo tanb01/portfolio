@@ -7,7 +7,7 @@
     </v-row>
     <v-row justify="center">
       <v-col align="center">
-        <v-btn :to="{ name: 'experience-create' }" text color="blue"
+        <v-btn :to="{ name: 'experience-create' }" text color="blue" nuxt
           ><v-icon left>mdi-plus-circle-outline</v-icon>
           <span>Create an Experience</span>
         </v-btn>
@@ -15,7 +15,7 @@
     </v-row>
     <ExperienceCard
       v-for="experience in experiences"
-      :key="experience.experienceId"
+      :key="experience.company"
       :experience="experience"
     />
   </div>
@@ -24,6 +24,7 @@
 <script>
 import ExperienceCard from "@/components/ExperienceCard";
 import { mapState } from "vuex";
+import { StoreDB } from "../services/fireinit";
 export default {
   name: "ExperiencePage",
   components: {
@@ -31,39 +32,28 @@ export default {
   },
   data() {
     return {
-      experiences: [
-        {
-          experienceId: 1,
-          name: "something",
-          date: "cool",
-        },
-      ],
+      experiences: [],
     };
   },
-  created() {
-    // this.$store.dispatch("experience/fetchExperiences");
-    // experiences = {
-    //   experienceId: 1,
-    //   name: "something",
-    //   date: "cool",
-    // };
+  async fetch() {
+    const ref = StoreDB.collection("experiences");
+    try {
+      const snapshot = await ref.get();
+      snapshot.forEach((doc, obj) => {
+        obj = { ...doc.data(), ...{ id: doc.id } };
+        this.experiences.push(obj);
+      });
+      // console.log("exper", this.experiences);
+    } catch (error) {
+      console.error(error);
+    }
   },
-  // computed: mapState({
-  //   experiences: (state) => state.experience.experiences,
-  // }),
-  // computed() {
-  // this.$store.dispatch("experience/fetchExperiences");
-  // experiences = {
-  //   experienceId: 1,
-  //   name: "something",
-  //   date: "cool",
-  // };
-  // },
 };
 </script>
 
 <style>
 .page {
-  height: 670px;
+  /* height: 670px; */
+  background-color: rgba(123, 123, 123, 0.2);
 }
 </style>
