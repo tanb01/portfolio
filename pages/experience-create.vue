@@ -151,7 +151,7 @@ export default {
           image: "",
           position: this.experience.position,
         });
-        console.log("Added document with ID: ", res.id);
+        // console.log("Added document with ID: ", res.id);
         alert("Success!");
         Object.keys(this.experience).forEach((key) => {
           this.experience[key] = "";

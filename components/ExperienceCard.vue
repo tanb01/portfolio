@@ -1,11 +1,11 @@
 <template>
   <v-container>
     <div class="experience-card -shadow">
-      <router-link
+      <nuxt-link
         class="experience-link"
         :to="{
           name: 'experience-show',
-          params: { id: experience.id },
+          params: { id: this.experience.id },
         }"
       >
         <div>
@@ -24,9 +24,9 @@
             {{ this.experience.description }}
           </h5>
         </div>
-      </router-link>
+      </nuxt-link>
       <div class="button-group">
-        <router-link
+        <nuxt-link
           :to="{
             name: 'experience-edit',
             params: { id: experience.id },
@@ -36,7 +36,7 @@
             ><v-icon left>mdi-pencil</v-icon>
             <span>Edit</span>
           </v-btn>
-        </router-link>
+        </nuxt-link>
         <v-btn text color="red" @click="deleteExperience()"
           ><v-icon left>mdi-delete</v-icon>
           <span>Delete</span>
@@ -56,7 +56,7 @@ export default {
   methods: {
     async deleteExperience() {
       const ref = StoreDB.collection("experiences").doc(this.experience.id);
-      console.log("ref", ref);
+      // console.log("ref", ref);
       try {
         const deleteFieldsRes = await ref.update({
           city: deleteField(),
@@ -72,8 +72,9 @@ export default {
         const deleteDocumentRes = await StoreDB.collection("experiences")
           .doc(this.experience.id)
           .delete();
-        console.log("res", deleteDocumentRes);
+        // console.log("res", deleteDocumentRes);
         alert("Success!");
+        // location.reload();
       } catch (error) {
         alert("Error!");
         console.error(error);
@@ -116,5 +117,8 @@ export default {
 }
 .button-group {
   text-align: right;
+}
+a:link {
+  text-decoration: none;
 }
 </style>
