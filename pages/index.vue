@@ -19,24 +19,8 @@
     <v-row id="experience" justify="center" align="center">
       <v-col>
         <v-card>
-          <!-- <v-responsive height="660"> -->
           <ExperiencePage />
-          <!-- </v-responsive> -->
         </v-card>
-
-        <!-- <v-card class="logo py-4 d-flex justify-center">
-          <NuxtLogo />
-          <VuetifyLogo />
-        </v-card>
-        <v-card>
-          <v-card-title class="headline">
-            Welcome to the Vuetify + Nuxt.js template
-          </v-card-title>
-          <v-card-actions>
-            <v-spacer />
-            <v-btn color="primary" nuxt to="/experience"> Continue </v-btn>
-          </v-card-actions>
-        </v-card> -->
       </v-col>
     </v-row>
   </div>

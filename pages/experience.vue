@@ -23,7 +23,6 @@
 
 <script>
 import ExperienceCard from "@/components/ExperienceCard";
-import { mapState } from "vuex";
 import { StoreDB } from "../services/fireinit";
 export default {
   name: "ExperiencePage",
@@ -32,33 +31,26 @@ export default {
   },
   data() {
     return {
-      // experiences: [],
+      experiences: [],
     };
   },
-  computed: mapState({
-    experiences: (state) => state.experience.experiences,
-
-    // alert(this.$store.state.experiences);
-  }),
-  // async fetch() {
-  //   const ref = StoreDB.collection("experiences");
-  //   try {
-  //     const snapshot = await ref.get();
-  //     snapshot.forEach((doc, obj) => {
-  //       obj = { ...doc.data(), ...{ id: doc.id } };
-  //       this.experiences.push(obj);
-  //     });
-  //     // console.log("exper", this.experiences);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // },
+  async fetch() {
+    const ref = StoreDB.collection("experiences");
+    try {
+      const snapshot = await ref.get();
+      snapshot.forEach((doc, obj) => {
+        obj = { ...doc.data(), ...{ id: doc.id } };
+        this.experiences.push(obj);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  },
 };
 </script>
 
 <style>
 .page {
-  /* height: 670px; */
   background-color: rgba(123, 123, 123, 0.2);
 }
 </style>
