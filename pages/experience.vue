@@ -32,22 +32,27 @@ export default {
   },
   data() {
     return {
-      experiences: [],
+      // experiences: [],
     };
   },
-  async fetch() {
-    const ref = StoreDB.collection("experiences");
-    try {
-      const snapshot = await ref.get();
-      snapshot.forEach((doc, obj) => {
-        obj = { ...doc.data(), ...{ id: doc.id } };
-        this.experiences.push(obj);
-      });
-      // console.log("exper", this.experiences);
-    } catch (error) {
-      console.error(error);
-    }
-  },
+  computed: mapState({
+    experiences: (state) => state.experience.experiences,
+
+    // alert(this.$store.state.experiences);
+  }),
+  // async fetch() {
+  //   const ref = StoreDB.collection("experiences");
+  //   try {
+  //     const snapshot = await ref.get();
+  //     snapshot.forEach((doc, obj) => {
+  //       obj = { ...doc.data(), ...{ id: doc.id } };
+  //       this.experiences.push(obj);
+  //     });
+  //     // console.log("exper", this.experiences);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // },
 };
 </script>
 
