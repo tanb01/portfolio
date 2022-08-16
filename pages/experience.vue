@@ -52,5 +52,9 @@ export default {
 <style>
 .page {
   background-color: rgba(123, 123, 123, 0.2);
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  padding: 12px;
 }
 </style>

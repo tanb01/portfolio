@@ -18,9 +18,12 @@
     </v-row>
     <v-row id="experience" justify="center" align="center">
       <v-col>
-        <v-card>
-          <ExperiencePage />
-        </v-card>
+        <ExperiencePage />
+      </v-col>
+    </v-row>
+    <v-row id="education" justify="center" align="center">
+      <v-col>
+        <EducationPage />
       </v-col>
     </v-row>
   </div>
@@ -28,8 +31,9 @@
 
 <script>
 import ExperiencePage from "../pages/experience.vue";
+import EducationPage from "./education.vue";
 export default {
   name: "IndexPage",
-  components: { ExperiencePage },
+  components: { ExperiencePage, EducationPage },
 };
 </script>
