@@ -18,7 +18,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app>
+    <v-app-bar app :class="{ 'navbar--hidden': !showNavbar }">
       <v-app-bar-nav-icon icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
@@ -73,7 +73,43 @@ export default {
       right: true,
       rightDrawer: false,
       title: "Benjamin Tan",
+      showNavbar: true,
+      lastScrollPosition: 0,
     };
+  },
+  mounted() {
+    window.addEventListener("scroll", this.onScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.onScroll);
+  },
+  methods: {
+    onScroll() {
+      // Get the current scroll position
+      const currentScrollPosition =
+        window.pageYOffset || document.documentElement.scrollTop;
+      // Because of momentum scrolling on mobiles, we shouldn't continue if it is less than zero
+      if (currentScrollPosition < 0) {
+        return;
+      }
+      // Here we determine whether we need to show or hide the navbar
+      this.showNavbar = currentScrollPosition < this.lastScrollPosition;
+      // Set the current scroll position as the last scroll position
+      this.lastScrollPosition = currentScrollPosition;
+    },
   },
 };
 </script>
+
+<style>
+.v-app-bar {
+  position: fixed;
+  transform: translate3d(0, 0, 0);
+  transition: 0.2s all ease-out;
+}
+.v-app-bar.navbar--hidden {
+  box-shadow: none;
+  transform: translate3d(0, -100%, 0) !important;
+  transition: 0.2s all ease-out;
+}
+</style>
