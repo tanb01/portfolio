@@ -9,13 +9,27 @@
             height="700"
             ><v-row align="center" justify="center">
               <v-col class="text-left pa-16" cols="12" md="10" sm="6">
-                <h3 class="h3-message">Hi,</h3>
-                <h1 class="h1-message">I'm Ben,</h1>
-                <h2 class="h2-message">A cybersecurity engineer by day,</h2>
-                <h2 class="h2-message">
+                <h3
+                  :class="[$vuetify.breakpoint.mdAndUp ? 'h3-message' : 'h3']"
+                >
+                  Hi,
+                </h3>
+                <h1
+                  :class="[$vuetify.breakpoint.mdAndUp ? 'h1-message' : 'h1']"
+                >
+                  I'm Ben.
+                </h1>
+                <h2
+                  :class="[$vuetify.breakpoint.mdAndUp ? 'h2-message' : 'h2']"
+                >
+                  A cybersecurity engineer by day,
+                </h2>
+                <h2
+                  :class="[$vuetify.breakpoint.mdAndUp ? 'h2-message' : 'h2']"
+                >
                   a software and web developer by night.
                 </h2>
-                <h4 class="headline">
+                <h4 :class="[$vuetify.breakpoint.mdAndUp ? 'headline' : 'h4']">
                   Coding, and developing secure projects for humans around the
                   world.
                 </h4>
@@ -56,6 +70,7 @@ export default {
 .h2-message {
   font-weight: 300px;
   font-size: 3.75rem;
+  opacity: 0.7;
 }
 
 .h3-message {
