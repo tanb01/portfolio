@@ -20,22 +20,16 @@
       <v-container>
         <v-btn class="ma-2" outlined href="" download> Resume </v-btn>
         <v-btn
-          v-if="$vuetify.theme.dark"
           class="mx-2"
-          fab
           small
+          plain
+          fab
+          elevation="4"
+          outlined
           @click="$vuetify.theme.dark = !$vuetify.theme.dark"
         >
-          <v-icon> mdi-brightness-6 </v-icon>
-        </v-btn>
-        <v-btn
-          v-if="!$vuetify.theme.dark"
-          class="mx-2"
-          fab
-          small
-          @click="$vuetify.theme.dark = !$vuetify.theme.dark"
-        >
-          <v-icon> mdi-weather-night </v-icon>
+          <v-icon v-if="$vuetify.theme.dark"> mdi-brightness-6 </v-icon>
+          <v-icon v-else="$vuetify.theme.dark"> mdi-weather-night </v-icon>
         </v-btn>
       </v-container>
     </v-navigation-drawer>
