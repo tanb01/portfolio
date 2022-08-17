@@ -28,9 +28,6 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
   </v-app>
 </template>
 
@@ -102,11 +99,16 @@ export default {
 </script>
 
 <style>
+.v-navigation-drawer {
+  height: 500px;
+}
+
 .v-app-bar {
   position: fixed;
   transform: translate3d(0, 0, 0);
   transition: 0.2s all ease-out;
 }
+
 .v-app-bar.navbar--hidden {
   box-shadow: none;
   transform: translate3d(0, -100%, 0) !important;
