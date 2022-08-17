@@ -17,9 +17,6 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <v-container>
-        <LoginForm />
-      </v-container>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon icon @click.stop="drawer = !drawer" />
@@ -38,7 +35,6 @@
 </template>
 
 <script>
-import LoginForm from "../components/LoginForm.vue";
 export default {
   name: "DefaultLayout",
   data() {
@@ -79,6 +75,5 @@ export default {
       title: "Benjamin Tan",
     };
   },
-  components: { LoginForm },
 };
 </script>

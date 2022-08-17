@@ -23,7 +23,6 @@
 
 <script>
 import ExperienceCard from "@/components/ExperienceCard";
-import { mapState } from "vuex";
 import { StoreDB } from "../services/fireinit";
 export default {
   name: "ExperiencePage",
@@ -43,7 +42,6 @@ export default {
         obj = { ...doc.data(), ...{ id: doc.id } };
         this.experiences.push(obj);
       });
-      // console.log("exper", this.experiences);
     } catch (error) {
       console.error(error);
     }
@@ -53,7 +51,6 @@ export default {
 
 <style>
 .page {
-  /* height: 670px; */
   background-color: rgba(123, 123, 123, 0.2);
 }
 </style>

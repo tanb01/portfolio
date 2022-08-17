@@ -1,46 +1,20 @@
 <template>
   <v-container>
     <div class="experience-card -shadow">
-      <router-link
-        class="experience-link"
-        :to="{
-          name: 'experience-show',
-          params: { id: experience.id },
-        }"
-      >
-        <div>
-          <h3 class="title">{{ this.experience.position }}</h3>
-          <h4 class="subtitle">
-            {{ experience.company }} · {{ this.experience.contractType }}
-          </h4>
-          <h5 class="subtitle-text">
-            {{ this.experience.startDate }} - {{ this.experience.endDate }} ·
-            Duration
-          </h5>
-          <h5 class="subtitle-text">
-            {{ this.experience.city }}, {{ this.experience.country }}
-          </h5>
-          <h5 class="description">
-            {{ this.experience.description }}
-          </h5>
-        </div>
-      </router-link>
-      <div class="button-group">
-        <router-link
-          :to="{
-            name: 'experience-edit',
-            params: { id: experience.id },
-          }"
-        >
-          <v-btn text color="primary"
-            ><v-icon left>mdi-pencil</v-icon>
-            <span>Edit</span>
-          </v-btn>
-        </router-link>
-        <v-btn text color="red" @click="deleteExperience()"
-          ><v-icon left>mdi-delete</v-icon>
-          <span>Delete</span>
-        </v-btn>
+      <div>
+        <h3 class="title">{{ experience.position }}</h3>
+        <h4 class="subtitle">
+          {{ experience.company }} · {{ experience.contractType }}
+        </h4>
+        <h5 class="subtitle-text">
+          {{ experience.startDate }} - {{ experience.endDate }} · Duration
+        </h5>
+        <h5 class="subtitle-text">
+          {{ experience.city }}, {{ experience.country }}
+        </h5>
+        <h5 class="description">
+          {{ experience.description }}
+        </h5>
       </div>
     </div>
   </v-container>
@@ -56,7 +30,6 @@ export default {
   methods: {
     async deleteExperience() {
       const ref = StoreDB.collection("experiences").doc(this.experience.id);
-      console.log("ref", ref);
       try {
         const deleteFieldsRes = await ref.update({
           city: deleteField(),
@@ -72,7 +45,6 @@ export default {
         const deleteDocumentRes = await StoreDB.collection("experiences")
           .doc(this.experience.id)
           .delete();
-        console.log("res", deleteDocumentRes);
         alert("Success!");
       } catch (error) {
         alert("Error!");
@@ -116,5 +88,8 @@ export default {
 }
 .button-group {
   text-align: right;
+}
+a:link {
+  text-decoration: none;
 }
 </style>
