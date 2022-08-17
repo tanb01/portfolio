@@ -1,18 +1,26 @@
 <template>
   <v-container>
     <div class="school-card -shadow">
-      <div>
-        <h3 class="title">{{ school.name }}</h3>
-        <h4 class="subtitle">
-          {{ school.degree }}
-        </h4>
-        <h5 class="subtitle-text">
-          {{ school.startDate }} - {{ school.endDate }} · Duration
-        </h5>
-        <h5 class="description">
-          {{ school.description }}
-        </h5>
-      </div>
+      <v-row>
+        <v-col cols="12" lg="1" md="4" sm="12">
+          <v-img
+            max-width="50"
+            :src="require('@/static/img/audencia-logo.jpg')"
+          />
+        </v-col>
+        <v-col>
+          <h3 class="title">{{ school.name }}</h3>
+          <h4 class="subtitle">
+            {{ school.degree }}
+          </h4>
+          <h5 class="subtitle-text">
+            {{ school.startDate }} - {{ school.endDate }} · Duration
+          </h5>
+          <h5 class="description">
+            {{ school.description }}
+          </h5>
+        </v-col>
+      </v-row>
     </div>
   </v-container>
 </template>

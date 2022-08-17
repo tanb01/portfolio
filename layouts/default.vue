@@ -17,6 +17,17 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <v-container>
+        <v-btn class="ma-2" outlined href="" download> Resume </v-btn>
+        <v-btn
+          class="mx-2"
+          fab
+          small
+          @click="$vuetify.theme.dark = !$vuetify.theme.dark"
+        >
+          <v-icon> mdi-brightness-6 </v-icon>
+        </v-btn>
+      </v-container>
     </v-navigation-drawer>
     <v-app-bar app :class="{ 'navbar--hidden': !showNavbar }">
       <v-app-bar-nav-icon icon @click.stop="drawer = !drawer" />
