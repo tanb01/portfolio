@@ -17,25 +17,33 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <v-container>
-        <v-btn class="ma-2" outlined href="" download> Resume </v-btn>
-        <v-btn
-          class="mx-2"
-          small
-          fab
-          elevation="4"
-          outlined
-          @click="$vuetify.theme.dark = !$vuetify.theme.dark"
-        >
-          <v-icon v-if="$vuetify.theme.dark"> mdi-brightness-6 </v-icon>
-          <v-icon v-else="$vuetify.theme.dark"> mdi-weather-night </v-icon>
-        </v-btn>
-      </v-container>
     </v-navigation-drawer>
     <v-app-bar app :class="{ 'navbar--hidden': !showNavbar }">
       <v-app-bar-nav-icon icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      <v-hover v-slot="{ hover }">
+        <v-btn icon href="https://www.linkedin.com/in/bentanpro/">
+          <v-icon :color="hover ? '#0077b5' : ''">mdi-linkedin</v-icon>
+        </v-btn>
+      </v-hover>
+      <v-hover v-slot="{ hover }">
+        <v-btn icon href="https://github.com/tanb01">
+          <v-icon :color="hover ? '#6e5494' : ''">mdi-github</v-icon>
+        </v-btn>
+      </v-hover>
+      <v-btn class="ma-2" outlined href="" download> Resume </v-btn>
+      <v-btn
+        class="ma-2"
+        small
+        fab
+        elevation="4"
+        outlined
+        @click="$vuetify.theme.dark = !$vuetify.theme.dark"
+      >
+        <v-icon v-if="$vuetify.theme.dark"> mdi-brightness-6 </v-icon>
+        <v-icon v-else="$vuetify.theme.dark"> mdi-weather-night </v-icon>
+      </v-btn>
     </v-app-bar>
     <v-main>
       <v-container fluid>
@@ -131,5 +139,9 @@ export default {
 
 .v-btn:focus::before {
   opacity: 0 !important;
+}
+
+.v-btn--icon::before {
+  display: none;
 }
 </style>
