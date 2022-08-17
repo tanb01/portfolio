@@ -22,7 +22,6 @@
         <v-btn
           class="mx-2"
           small
-          plain
           fab
           elevation="4"
           outlined
@@ -128,5 +127,9 @@ export default {
   box-shadow: none;
   transform: translate3d(0, -100%, 0) !important;
   transition: 0.2s all ease-out;
+}
+
+.v-btn:focus::before {
+  opacity: 0 !important;
 }
 </style>
