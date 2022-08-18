@@ -2,6 +2,7 @@ import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
 import 'firebase/compat/database'
+import 'firebase/compat/storage'
 
 const config = {
   apiKey: process.env.API_KEY,
@@ -18,4 +19,5 @@ export const GoogleProvider = new firebase.auth.GoogleAuthProvider()
 export const auth = firebase.auth()
 export const DB = firebase.database()
 export const StoreDB = firebase.firestore()
+export const Storage = firebase.storage()
 export default firebase

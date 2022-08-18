@@ -2,11 +2,8 @@
   <v-container>
     <div class="school-card -shadow">
       <v-row>
-        <v-col cols="12" lg="1" md="4" sm="12">
-          <v-img
-            max-width="50"
-            :src="require('@/static/img/audencia-logo.jpg')"
-          />
+        <v-col align="center" cols="12" lg="2" md="2" sm="3">
+          <v-img class="school-logo" width="100px" :src="school.logo" />
         </v-col>
         <v-col>
           <h3 class="title">{{ school.name }}</h3>
@@ -26,14 +23,13 @@
 </template>
 
 <script>
-import { deleteField } from "firebase/firestore";
-import { StoreDB } from "../services/fireinit";
 export default {
   props: {
     school: Object,
   },
 };
 </script>
+
 <style scoped>
 .school-card {
   margin: 0 auto;
@@ -60,16 +56,12 @@ export default {
 .description {
   font-weight: 400;
 }
-.school-link {
-  color: white;
-  text-decoration: none;
-  font-weight: 100;
-  text-align: justify;
-}
-.button-group {
-  text-align: right;
-}
+
 a:link {
   text-decoration: none;
+}
+
+.school-logo {
+  border-radius: 4px;
 }
 </style>
