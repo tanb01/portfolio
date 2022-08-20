@@ -75,6 +75,11 @@ export default {
           to: "/",
         },
         {
+          icon: "mdi-shield-account",
+          title: "About Me",
+          to: { path: "/", hash: "#about" },
+        },
+        {
           icon: "mdi-briefcase",
           title: "Experience",
           to: { path: "/", hash: "#experience" },

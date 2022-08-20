@@ -39,6 +39,11 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row id="about" justify="center" align="center">
+      <v-col>
+        <AboutMePage />
+      </v-col>
+    </v-row>
     <v-row id="experience" justify="center" align="center">
       <v-col>
         <ExperiencePage />
@@ -53,11 +58,12 @@
 </template>
 
 <script>
+import AboutMePage from "../pages/about.vue";
 import ExperiencePage from "../pages/experience.vue";
 import EducationPage from "./education.vue";
 export default {
   name: "IndexPage",
-  components: { ExperiencePage, EducationPage },
+  components: { AboutMePage, ExperiencePage, EducationPage },
 };
 </script>
 
