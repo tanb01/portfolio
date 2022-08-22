@@ -11,7 +11,12 @@
             {{ school.degree }}
           </h4>
           <h5 class="subtitle-text">
-            {{ school.startDate }} - {{ school.endDate }} · Duration
+            {{ school.startDate | formatDate }} -
+            {{ school.endDate | formatDate }} ·
+            {{ duration(school.startDate, school.endDate) }}
+            {{
+              duration(school.startDate, school.endDate) > 1 ? "years" : "year"
+            }}
           </h5>
           <h5 class="description">
             {{ school.description }}
@@ -23,9 +28,37 @@
 </template>
 
 <script>
+import dayjs from "dayjs";
+import calendar from "dayjs/plugin/calendar";
+import updateLocale from "dayjs/plugin/updateLocale";
+
 export default {
   props: {
     school: Object,
+  },
+  created() {
+    dayjs.extend(calendar);
+    dayjs.extend(updateLocale);
+    dayjs.updateLocale("en", {
+      calendar: {
+        sameElse: "MMM YYYY",
+      },
+    });
+  },
+  filters: {
+    formatDate: (date) => {
+      if (!date) {
+        return null;
+      }
+      return dayjs(date).calendar();
+    },
+  },
+  methods: {
+    duration(startDate, endDate) {
+      const sD = dayjs(startDate);
+      const eD = dayjs(endDate);
+      return eD.diff(sD, "year");
+    },
   },
 };
 </script>

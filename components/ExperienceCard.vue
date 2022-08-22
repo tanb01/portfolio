@@ -7,7 +7,14 @@
           {{ experience.company }} · {{ experience.contractType }}
         </h4>
         <h5 class="subtitle-text">
-          {{ experience.startDate }} - {{ experience.endDate }} · Duration
+          {{ experience.startDate | formatDate }} -
+          {{ experience.endDate | formatDate }} ·
+          {{ duration(experience.startDate, experience.endDate) }}
+          {{
+            duration(experience.startDate, experience.endDate) > 1
+              ? "months"
+              : "month"
+          }}
         </h5>
         <h5 class="subtitle-text">
           {{ experience.city }}, {{ experience.country }}
@@ -23,9 +30,30 @@
 <script>
 import { deleteField } from "firebase/firestore";
 import { StoreDB } from "../services/fireinit";
+import dayjs from "dayjs";
+import calendar from "dayjs/plugin/calendar";
+import updateLocale from "dayjs/plugin/updateLocale";
+
 export default {
   props: {
     experience: Object,
+  },
+  created() {
+    dayjs.extend(calendar);
+    dayjs.extend(updateLocale);
+    dayjs.updateLocale("en", {
+      calendar: {
+        sameElse: "MMM YYYY",
+      },
+    });
+  },
+  filters: {
+    formatDate: (date) => {
+      if (!date) {
+        return null;
+      }
+      return dayjs(date).calendar();
+    },
   },
   methods: {
     async deleteExperience() {
@@ -50,6 +78,11 @@ export default {
         alert("Error!");
         console.error(error);
       }
+    },
+    duration(startDate, endDate) {
+      const sD = dayjs(startDate);
+      const eD = dayjs(endDate);
+      return eD.diff(sD, "month");
     },
   },
 };
