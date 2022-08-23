@@ -2,11 +2,25 @@
   <v-container>
     <div class="about-card -shadow">
       <v-row>
-        <v-col>
-          <h3 class="title">Title</h3>
-          <h4 class="subtitle">Subtitle</h4>
-          <h5 class="subtitle-text">Subtitle-Text</h5>
-          <h5 class="description">Description</h5>
+        <v-col class="pa-10">
+          <p :class="[$vuetify.breakpoint.mdAndUp ? 'headline' : 'h4']">
+            Hi! My name is Benjamin, I love technology, coding applications and
+            websites.
+          </p>
+          <p :class="[$vuetify.breakpoint.mdAndUp ? 'headline' : 'h4']">
+            I am naturally curious and I am always learning. My insatiable
+            hunger for knowledge has led me to completing a dual masters
+            program. My first masters is in information systems engineering with
+            a focus in cybersecurity at ECE, an engineering school in Paris,
+            France. My second masters is in management at Audencia Business
+            School in Nantes, France.
+          </p>
+          <p :class="[$vuetify.breakpoint.mdAndUp ? 'headline' : 'h4']">
+            Today I search for an internship in cybersecurity consulting to
+            start working in January 2023. I am open to all opportunities, you
+            can contact me at
+            <a href="mailto:bentanpro@gmail.com">bentanpro@gmail.com</a>
+          </p>
         </v-col>
       </v-row>
     </div>
