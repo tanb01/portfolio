@@ -3,7 +3,11 @@
     <div class="school-card -shadow">
       <v-row>
         <v-col align="center" cols="12" lg="2" md="2" sm="3">
-          <v-img class="school-logo" width="100px" :src="school.logo" />
+          <v-img
+            class="school-logo"
+            width="100px"
+            :src="require(`../static/img/${school.logo}`)"
+          />
         </v-col>
         <v-col>
           <h3 class="title">{{ school.name }}</h3>

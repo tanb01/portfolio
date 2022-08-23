@@ -32,14 +32,9 @@
           <v-icon :color="hover ? '#6e5494' : ''">mdi-github</v-icon>
         </v-btn>
       </v-hover>
-      <v-btn
-        class="ma-2"
-        outlined
-        href="https://firebasestorage.googleapis.com/v0/b/portfolio-4def2.appspot.com/o/ECE%20-%20Audencia%20V2%20Benjamin%20TAN%20CV%20(French)%202021-2022.pdf?alt=media&token=03a94bf7-f50a-413a-8d72-4647ad2f3570"
-        download
+      <v-btn class="ma-2" outlined @click.prevent="openResumeFr()"
+        >Resume</v-btn
       >
-        Resume
-      </v-btn>
       <v-btn
         class="ma-2"
         small
@@ -127,6 +122,9 @@ export default {
       this.showNavbar = currentScrollPosition < this.lastScrollPosition;
       // Set the current scroll position as the last scroll position
       this.lastScrollPosition = currentScrollPosition;
+    },
+    openResumeFr() {
+      window.open("resume-fr.pdf");
     },
   },
 };
